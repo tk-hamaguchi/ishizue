@@ -1,0 +1,10 @@
+Description:
+    Added deploy template with Itamae and Capistrano.
+
+Example:
+    rails generate ishizue:install
+
+    This will create:
+        misc/capistrano
+        misc/itamae
+        misc/ssh_keys
