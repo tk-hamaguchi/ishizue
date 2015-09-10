@@ -39,7 +39,7 @@ vagrant up
 5. Setup with Itamae
 
 ```
-itamae ssh -h 192.168.33.10 -u root --ohai roles/staging.rb --node-yaml=nodes/staging.yml
+bundle exec itamae ssh -h 192.168.33.10 -u root --ohai roles/staging.rb --node-yaml=nodes/staging.yml
  INFO : Starting Itamae...
 root@192.168.33.10's password: 
 ```
