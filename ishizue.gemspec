@@ -32,7 +32,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'itamae', '~> 1.6.1'
   s.add_dependency 'highline', '~> 1.7.3'
   s.add_dependency 'itamae-plugin-recipe-selinux', '~> 0.0.5'
-  s.add_dependency 'itamae-plugin-recipe-rvm',     '~> 1.0.0'
+  s.add_dependency 'itamae-plugin-recipe-rvm',     '1.0.1'
   s.add_dependency 'serverspec', '~> 2.22.0'
   s.add_dependency 'whenever', '~> 0.9.4'
 end

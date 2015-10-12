@@ -11,7 +11,7 @@ PATH
       figaro (~> 1.1.1)
       highline (~> 1.7.3)
       itamae (~> 1.6.1)
-      itamae-plugin-recipe-rvm (~> 1.0.0)
+      itamae-plugin-recipe-rvm (= 1.0.1)
       itamae-plugin-recipe-selinux (~> 0.0.5)
       rails (~> 4.2.3)
       serverspec (~> 2.22.0)
@@ -113,7 +113,7 @@ GEM
       schash (~> 0.1.0)
       specinfra (>= 2.37.0, < 3.0.0)
       thor
-    itamae-plugin-recipe-rvm (1.0.0)
+    itamae-plugin-recipe-rvm (1.0.1)
       itamae (~> 1.6, >= 1.6.1)
     itamae-plugin-recipe-selinux (0.0.5)
       itamae

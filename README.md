@@ -9,46 +9,55 @@ Getting start with Vagrant
 
 1. Add your Gemfile
 
-```
-group :development do
-  gem 'ishizue', github: 'tk-hamaguchi/ishizue'
-end
-```
+  ```
+  group :development do
+      gem 'ishizue', github: 'tk-hamaguchi/ishizue'
+  end
+  ```
 
-2. Install and generate templates
+2. Added .ruby-versions. (ex: ruby `2.2` with gemset `sample`)
 
-```
-bundle install
-bundle exec rails g ishizue:install
-```
+  ```
+  $ rvm use 2.2@sample --install --create --ruby-version
+  ```
 
-3. Added SSH Keys
+3. Install and generate templates
 
-```
-cp ~/.ssh/id_rsa.pub misc/ssh_keys
-```
+  ```
+  $ gem install bundler --no-ri --no-rdoc 
+  $ bundle install
+  $ bundle exec rails g ishizue:install
+  ```
 
-4. Vagrant up
+4. Added SSH Keys
 
-```
-cd misc/itamae/
-vagrant up
-```
+  ```
+  $ cp ~/.ssh/id_rsa.pub misc/ssh_keys
+  ```
 
-5. Setup with Itamae
+5. Vagrant up
 
-```
-bundle exec itamae ssh -h 192.168.33.10 -u root --ohai roles/staging.rb --node-yaml=nodes/staging.yml
- INFO : Starting Itamae...
-root@192.168.33.10's password: 
-```
+  ```
+  $ cd misc/itamae/
+  $ vagrant up
+  ```
 
-password => vagrant
+6. Setup with Itamae
 
-6. Access with Web browser
+  ```
+  $ bundle exec itamae ssh -h 192.168.33.10 -u root --ohai roles/staging.rb --node-yaml=nodes/staging.yml
+        INFO : Starting Itamae...
+        root@192.168.33.10's password: 
+  ```
 
-Main: http://192.168.33.10
-Monitoring: http://192.168.33.10:8282
+  password => `vagrant`
+
+7. Access with Web browser
+
+  | Site       | URL                       |
+  |:----------:|:--------------------------|
+  | Main       | http://192.168.33.10      |
+  | Monitoring | http://192.168.33.10:8282 |
 
 
 Change target host

@@ -14,7 +14,7 @@ set :deploy_to, "/var/rails/#{fetch(:application)}"
 set :scm, :copy
 set :tar_verbose, false
 set :include_dir, '../../'
-set :exclude_dir, %w(files Capfile ../../.git ../../tmp ../../log ../../spec)
+set :exclude_dir, %w(files Capfile ../../.git ../../tmp ../../log ../../spec archive.tar.gz)
 
 # Default value for :format is :pretty
 # set :format, :pretty
