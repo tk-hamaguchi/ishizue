@@ -11,7 +11,6 @@ Getting start with Vagrant
 
 ```
 group :development do
-  gem 'itamae-plugin-recipe-rvm', github: 'tk-hamaguchi/itamae-plugin-recipe-rvm', require: false
   gem 'ishizue', github: 'tk-hamaguchi/ishizue'
 end
 ```

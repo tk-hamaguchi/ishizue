@@ -10,7 +10,7 @@ if node[:platform_family] == 'rhel'
     include_recipe '../cookbooks/mariadb/default.rb'
   end
 end
-include_recipe 'rvm'
+include_recipe 'rvm::system'
 include_recipe '../cookbooks/redis/default.rb'
 include_recipe '../cookbooks/munin/default.rb'
 include_recipe '../cookbooks/monit/default.rb'

@@ -29,9 +29,10 @@ Gem::Specification.new do |s|
   s.add_dependency 'capistrano-bundler', '~> 1.1.4'
   s.add_dependency 'capistrano-scm-copy', '~> 0.7.0'
   s.add_dependency 'capistrano-template', '~> 0.0.4'
-  s.add_dependency 'itamae', '~> 1.4.5'
+  s.add_dependency 'itamae', '~> 1.6.1'
   s.add_dependency 'highline', '~> 1.7.3'
   s.add_dependency 'itamae-plugin-recipe-selinux', '~> 0.0.5'
+  s.add_dependency 'itamae-plugin-recipe-rvm',     '~> 1.0.0'
   s.add_dependency 'serverspec', '~> 2.22.0'
   s.add_dependency 'whenever', '~> 0.9.4'
 end
