@@ -1,5 +1,5 @@
 namespace :<%= @app_name %> do
-  task upload: %w(upload:check_config_dir upload:database_yml upload:secrets_yml upload:puma_rb upload:monit_rc upload:nginx_conf upload:schedule_rb upload:rsyslog_conf upload:application_yml)
+  task upload: %w(upload:check_config_dir upload:database_yml upload:secrets_yml upload:puma_rb upload:sidekiq_yml upload:monit_rc upload:nginx_conf upload:schedule_rb upload:rsyslog_conf upload:application_yml)
 
   namespace :db do
     task :create do
@@ -48,6 +48,16 @@ namespace :<%= @app_name %> do
           upload! 'files/config/puma.rb', "#{shared_path}/config/puma.rb"
         else
           upload! 'files/config/puma.rb', "#{shared_path}/config/puma.rb.new"
+        end
+      end
+    end
+
+    task sidekiq_yml: %i(check_config_dir) do
+      on roles(:app) do |host|
+        if test "[ ! -f #{shared_path}/config/sidekiq.yml ]"
+          upload! 'files/config/sidekiq.yml', "#{shared_path}/config/sidekiq.yml"
+        else
+          upload! 'files/config/sidekiq.yml', "#{shared_path}/config/sidekiq.yml.new"
         end
       end
     end
