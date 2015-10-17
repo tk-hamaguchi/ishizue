@@ -66,3 +66,4 @@ set :ssh_options, {
 #set :log_level, :debug
 
 set :stage, :production
+set :rails_env, :production

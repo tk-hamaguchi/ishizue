@@ -23,4 +23,12 @@ class Ishizue::InstallGenerator < Rails::Generators::Base
     template 'erbs/staging.rb.erb', 'misc/itamae/roles/staging.rb'
     template 'erbs/ishizue.rake.erb', 'misc/capistrano/lib/capistrano/tasks/ishizue.rake'
   end
+
+  def append_gems
+    gem 'sinatra'
+    gem 'sidekiq'
+    gem 'figaro'
+    gem 'whenever'
+    gem 'puma'
+  end
 end

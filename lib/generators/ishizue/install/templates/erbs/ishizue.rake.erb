@@ -1,12 +1,14 @@
 namespace :<%= @app_name %> do
-  task upload: %w(upload:check_config_dir upload:database_yml upload:secrets_yml upload:monit_rc upload:nginx_conf upload:schedule_rb upload:rsyslog_conf upload:application_yml)
+  task upload: %w(upload:check_config_dir upload:database_yml upload:secrets_yml upload:puma_rb upload:monit_rc upload:nginx_conf upload:schedule_rb upload:rsyslog_conf upload:application_yml)
 
   namespace :db do
     task :create do
       on roles(:app) do |host|
-        if test("[ `#{fetch(:rvm_path)}/bin/rvm-shell #{fetch(:rvm_ruby_version)} -c 'cd #{release_path} ; RAILS_ENV=#{fetch(:stage)} bundle exec rake db:version >/dev/null 2>&1 ; echo $?'` == 1 ]")
+        if test("[ `#{fetch(:rvm_path)}/bin/rvm-shell #{fetch(:rvm_ruby_version)} -c 'cd #{release_path} ; RAILS_ENV=#{fetch(:rails_env)} bundle exec rake db:version >/dev/null 2>&1 ; echo $?'` == 1 ]")
           within release_path do
-            execute :rake, 'db:create'
+            with rails_env: fetch(:rails_env) do
+              execute :rake, 'db:create'
+            end
           end
         end
       end
@@ -36,6 +38,16 @@ namespace :<%= @app_name %> do
           upload! 'files/config/secrets.yml', "#{shared_path}/config/secrets.yml"
         else
           upload! 'files/config/secrets.yml', "#{shared_path}/config/secrets.yml.new"
+        end
+      end
+    end
+
+    task puma_rb: %i(check_config_dir) do
+      on roles(:app) do |host|
+        if test "[ ! -f #{shared_path}/config/puma.rb ]"
+          upload! 'files/config/puma.rb', "#{shared_path}/config/puma.rb"
+        else
+          upload! 'files/config/puma.rb', "#{shared_path}/config/puma.rb.new"
         end
       end
     end

@@ -35,4 +35,5 @@ Gem::Specification.new do |s|
   s.add_dependency 'itamae-plugin-recipe-rvm',     '1.0.1'
   s.add_dependency 'serverspec', '~> 2.22.0'
   s.add_dependency 'whenever', '~> 0.9.4'
+  s.add_dependency 'itamae-plugin-resource-firewalld', '~> 0.1.1'
 end

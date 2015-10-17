@@ -22,7 +22,7 @@ end
 
 local_ruby_block 'cap deploy:check' do
   block do
-    Itamae::Logger.info `cd ../capistrano && cap staging deploy:check`
+    Itamae.logger.info `cd ../capistrano && cap staging deploy:check`
   end
 end
 
@@ -39,7 +39,7 @@ end
 
 local_ruby_block 'cap deploy' do
   block do
-    Itamae::Logger.info `cd ../capistrano && cap staging deploy`
+    Itamae.logger.info `cd ../capistrano && cap staging deploy`
   end
 end
 
@@ -65,12 +65,18 @@ execute 'cp /var/rails/<%= @app_name %>/shared/config/monit.rc /etc/monit.d/<%= 
 end
 
 if node[:platform] == 'centos' && node[:platform_version].to_i == 7
-  execute 'firewall-cmd --zone public --add-service http --permanent' do
-    not_if 'firewall-cmd --list-services --zone public | grep http'
+  service 'firewalld' do
+    action [:start, :enable]
   end
-  remote_file '/usr/lib/firewalld/services/monitoring.xml'
-  execute 'firewall-cmd --zone public --add-service monitoring --permanent' do
-    not_if 'firewall-cmd --list-services --zone public | grep monitoring'
+
+  firewalld_zone 'public' do
+    interfaces node[:network][:interfaces].keys - ['lo']
+    services   %w(dhcpv6-client http ssh)
+    ports      %w(8282/tcp)
+    default_zone true
   end
-  execute 'firewall-cmd --reload'
+
+  service 'firewalld' do
+    action [:restart]
+  end
 end
